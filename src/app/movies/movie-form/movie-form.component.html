@@ -1,0 +1,51 @@
+<form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Title*</mat-label>
+        <input formControlName="title" matInput />
+        <mat-error>Title is required</mat-error>
+    </mat-form-field>
+
+    <div class="checkbox-container">
+        <mat-checkbox formControlName="inTheaters">In theaters</mat-checkbox>
+    </div>
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Trailer</mat-label>
+        <input formControlName="trailer" matInput />
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Release Date</mat-label>
+        <input formControlName="releaseDate" matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <h4>Poster</h4>
+    <app-input-img [urlCurrentImage]="model?.poster" (onImageSelected)="onImageSelected($event)"></app-input-img>
+    <h4>Summary</h4>
+
+    <app-input-markdown [markdownContent]="model?.summary" (changeMarkdown)="changeMarkdown($event)">
+    </app-input-markdown>
+
+    <h4>Select genres</h4>
+
+    <app-multiple-selector [NonSelectedItems]="nonSelectedGenres" [SelectedItems]="selectedGenres">
+    </app-multiple-selector>
+
+    <h4>Select movie theaters</h4>
+
+    <app-multiple-selector [NonSelectedItems]="nonSelectedTheaters" [SelectedItems]="selectedTheaters">
+    </app-multiple-selector>
+
+    <h4>select actors</h4>
+
+    <app-actor-autocomplete></app-actor-autocomplete>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">Save </button>
+        <a mat-stroked-button routerLink="/">Cancel</a>
+    </div>
+
+</form>

@@ -1,0 +1,16 @@
+<form [formGroup]="form" (submit)="saveChanges()">
+
+    <mat-form-field appearance="outline">
+<mat-label>Name*</mat-label>
+<input formControlName="name" matInput />
+<mat-error>The name required</mat-error>
+    </mat-form-field>
+<h4>Location</h4>
+    <app-map
+    [initCoordinates]="initCoordinates"
+    (onSelectedLocation)="onSelectedLocation($event)"></app-map>
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">Save</button>
+        <a mat-stroked-button routerLink="/movie-theather">Cancel</a>
+    </div>
+</form>
