@@ -9,11 +9,11 @@ import { genreCreateDto } from '../genres.model';
   styleUrls: ['./form-genre.component.css']
 })
 export class FormGenreComponent implements OnInit {
- 
+
 
   constructor(private formBuilder: FormBuilder) { }
 
-  form:FormGroup
+  form: FormGroup
 
   @Input()
   model: genreCreateDto;
@@ -22,32 +22,32 @@ export class FormGenreComponent implements OnInit {
   onSaveChanges: EventEmitter<genreCreateDto> = new EventEmitter<genreCreateDto>()
 
   ngOnInit(): void {
-    this.form= this.formBuilder.group({
-      name:['', {
+    this.form = this.formBuilder.group({
+      name: ['', {
         validators: [Validators.required, Validators.minLength(3), firstLetterUppercase()]
       }]
     })
 
-    if(this.model !==  undefined){
+    if (this.model !== undefined) {
       this.form.patchValue(this.model);
     }
   }
 
-  saveChanges(){
+  saveChanges() {
     this.onSaveChanges.emit(this.form.value);
   }
 
-  getErrorMessageByFieldName(){
+  getErrorMessageByFieldName() {
     const field = this.form.get('name');
-    if(field.hasError('required')){
+    if (field.hasError('required')) {
       return 'Name field is required';
     }
 
-    if(field.hasError('minlength')){
+    if (field.hasError('minlength')) {
       return 'Name field  minLength is 3';
     }
 
-    if(field.hasError('firstLetterUppercase')){
+    if (field.hasError('firstLetterUppercase')) {
       return field.getError('firstLetterUppercase').message;
     }
     return ''

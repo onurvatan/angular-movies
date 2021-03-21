@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +40,7 @@ import { MovieFormComponent } from './movies/movie-form/movie-form.component';
 import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component';
 import { ActorAutocompleteComponent } from './actors/actor-autocomplete/actor-autocomplete.component';
+import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
 
 
 @NgModule({
@@ -68,7 +71,8 @@ import { ActorAutocompleteComponent } from './actors/actor-autocomplete/actor-au
     MovieFormComponent,
     EditMovieComponent,
     MultipleSelectorComponent,
-    ActorAutocompleteComponent
+    ActorAutocompleteComponent,
+    DisplayErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +82,7 @@ import { ActorAutocompleteComponent } from './actors/actor-autocomplete/actor-au
     ReactiveFormsModule,
     FormsModule,
     LeafletModule,
+    HttpClientModule,
     MarkdownModule.forRoot()    
   ],
   providers: [],
