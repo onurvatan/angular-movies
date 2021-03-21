@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -83,6 +85,7 @@ import { DisplayErrorsComponent } from './utilities/display-errors/display-error
     FormsModule,
     LeafletModule,
     HttpClientModule,
+    SweetAlert2Module.forRoot(),
     MarkdownModule.forRoot()    
   ],
   providers: [],

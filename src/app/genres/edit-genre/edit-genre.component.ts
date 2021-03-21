@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { genreCreateDto } from '../genres.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { parseWebApiErrors } from 'src/app/utilities/utils';
+import { genreCreateDto, genreDto } from '../genres.model';
+import { GenresService } from '../genres.service';
 
 @Component({
   selector: 'app-edit-genre',
@@ -8,15 +11,26 @@ import { genreCreateDto } from '../genres.model';
 })
 export class EditGenreComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route:ActivatedRoute, 
+  private service:GenresService,
+    private router: Router
+    ) { }
 
-  model:genreCreateDto= {name: 'Drama'}
-
+  model:genreDto;
+  errors: string[]= [];
   ngOnInit(): void {
+    this.route.params.subscribe(params=> {
+      this.service.getById(params.id).subscribe(genre=> {
+        this.model=genre;
+      });
+    })
   }
   
-  saveChanges(genreCreteDto:genreCreateDto){
-
+  saveChanges(genreCreteDto:genreDto){
+    this.service.edit(this.model.id, genreCreteDto).subscribe(()=>{
+      this.router.navigate(["/genres"]);
+    },error => this.errors = parseWebApiErrors(error));
   }
 
 }
