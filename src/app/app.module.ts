@@ -43,6 +43,8 @@ import { EditMovieComponent } from './movies/edit-movie/edit-movie.component';
 import { MultipleSelectorComponent } from './utilities/multiple-selector/multiple-selector.component';
 import { ActorAutocompleteComponent } from './actors/actor-autocomplete/actor-autocomplete.component';
 import { DisplayErrorsComponent } from './utilities/display-errors/display-errors.component';
+import { AuthorizeViewComponent } from './security/authorize-view/authorize-view.component';
+import { LoginComponent } from './security/login/login.component';
 
 
 @NgModule({
@@ -74,7 +76,9 @@ import { DisplayErrorsComponent } from './utilities/display-errors/display-error
     EditMovieComponent,
     MultipleSelectorComponent,
     ActorAutocompleteComponent,
-    DisplayErrorsComponent
+    DisplayErrorsComponent,
+    AuthorizeViewComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
